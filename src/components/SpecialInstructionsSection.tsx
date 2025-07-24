@@ -30,19 +30,19 @@ const SpecialInstructionsSection = ({ instructions, onChange }: Props) => {
   };
 
   return (
-    <div className="space-y-4 sm:space-y-6">
+    <div className="space-y-6">
       <div className="flex items-center gap-2">
-        <FileText className="w-4 h-4 sm:w-5 sm:h-5 text-zenaris-blue flex-shrink-0" />
-        <h2 className="text-base sm:text-lg font-semibold text-zenaris-dark">Special Instructions</h2>
+        <FileText className="w-5 h-5 text-zenaris-blue" />
+        <h2 className="text-lg font-semibold text-zenaris-dark">Special Instructions</h2>
       </div>
 
       {/* Information Box */}
-      <div className="bg-blue-50 border border-blue-200 rounded-lg sm:rounded-xl p-3 sm:p-4">
-        <div className="flex items-start gap-2 sm:gap-3">
-          <Info className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 mt-0.5 flex-shrink-0" />
+      <div className="bg-blue-50 border border-blue-200 rounded-xl p-4">
+        <div className="flex items-start gap-3">
+          <Info className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
           <div>
             <h3 className="text-sm font-semibold text-blue-800 mb-1">Additional Considerations</h3>
-            <p className="text-sm text-blue-700 leading-relaxed">
+            <p className="text-sm text-blue-700">
               Include any special dietary requirements, texture preferences, cultural restrictions, 
               or other important meal-related information.
             </p>
@@ -51,15 +51,15 @@ const SpecialInstructionsSection = ({ instructions, onChange }: Props) => {
       </div>
 
       {/* Quick Suggestions */}
-      <div className="space-y-2 sm:space-y-3">
-        <h3 className="font-medium text-gray-800 text-sm sm:text-base">Common Instructions (Click to Add)</h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+      <div className="space-y-3">
+        <h3 className="font-medium text-gray-800">Common Instructions (Click to Add)</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           {suggestions.map((suggestion) => (
             <button
               key={suggestion}
               type="button"
               onClick={() => addSuggestion(suggestion)}
-              className="text-left text-sm p-2.5 sm:p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 transition-colors leading-tight disabled:opacity-50 disabled:cursor-not-allowed"
+              className="text-left text-sm p-3 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 transition-colors"
               disabled={instructions.length + suggestion.length + 3 > maxLength}
             >
               • {suggestion}
@@ -77,7 +77,7 @@ const SpecialInstructionsSection = ({ instructions, onChange }: Props) => {
           id="specialInstructions"
           value={instructions}
           onChange={(e) => onChange(e.target.value)}
-          className={`w-full px-3 py-3 border rounded-lg sm:rounded-xl focus:ring-2 focus:border-transparent transition-colors resize-none text-base ${
+          className={`w-full px-3 py-3 border rounded-xl focus:ring-2 focus:border-transparent transition-colors resize-none ${
             isOverLimit 
               ? 'border-red-300 focus:ring-red-500' 
               : 'border-gray-300 focus:ring-zenaris-blue'
@@ -90,16 +90,16 @@ Examples:
 • Kosher dietary requirements
 • Soft foods only due to swallowing difficulties
 • Small frequent meals preferred over large portions"
-          rows={6}
+          rows={8}
           maxLength={maxLength}
         />
         
         {/* Character Counter */}
-        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 text-sm">
-          <div className="text-gray-500 text-xs sm:text-sm leading-tight">
+        <div className="flex justify-between items-center text-sm">
+          <div className="text-gray-500">
             Use bullet points for clarity. Include cultural, religious, or medical dietary needs.
           </div>
-          <div className={`font-medium text-xs sm:text-sm ${
+          <div className={`font-medium ${
             isOverLimit ? 'text-red-600' : isNearLimit ? 'text-orange-600' : 'text-gray-500'
           }`}>
             {characterCount}/{maxLength} characters

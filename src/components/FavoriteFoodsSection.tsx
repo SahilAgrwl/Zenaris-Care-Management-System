@@ -94,17 +94,17 @@ const FavoriteFoodsSection = ({ foods, onChange }: Props) => {
   }, {} as Record<MealCategory, FoodItem[]>);
 
   return (
-    <div className="space-y-4 sm:space-y-6">
+    <div className="space-y-6">
       <div className="flex items-center gap-2">
-        <Heart className="w-4 h-4 sm:w-5 sm:h-5 text-green-600 flex-shrink-0" />
-        <h2 className="text-base sm:text-lg font-semibold text-zenaris-dark">Favorite Foods</h2>
+        <Heart className="w-5 h-5 text-green-600" />
+        <h2 className="text-lg font-semibold text-zenaris-dark">Favorite Foods</h2>
       </div>
 
       {/* Add New Food */}
-      <div className="bg-green-50 border border-green-200 rounded-lg sm:rounded-xl p-3 sm:p-4">
-        <div className="space-y-3 sm:space-y-4">
-          <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 gap-3 sm:gap-4">
-            <div className="lg:col-span-2">
+      <div className="bg-green-50 border border-green-200 rounded-xl p-4">
+        <div className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="md:col-span-2">
               <label htmlFor="newFood" className="block text-sm font-medium text-gray-700 mb-2">
                 Add Favorite Food
               </label>
@@ -114,7 +114,7 @@ const FavoriteFoodsSection = ({ foods, onChange }: Props) => {
                 value={newFood}
                 onChange={(e) => setNewFood(e.target.value)}
                 onKeyPress={handleKeyPress}
-                className="w-full px-3 py-2.5 sm:py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent text-base"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
                 placeholder="e.g., Chocolate ice cream, Grilled chicken..."
               />
             </div>
@@ -126,7 +126,7 @@ const FavoriteFoodsSection = ({ foods, onChange }: Props) => {
                 id="category"
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value as MealCategory)}
-                className="w-full px-3 py-2.5 sm:py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent text-base"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
               >
                 {Object.entries(categoryLabels).map(([value, label]) => (
                   <option key={value} value={value}>
@@ -140,7 +140,7 @@ const FavoriteFoodsSection = ({ foods, onChange }: Props) => {
             type="button"
             onClick={addFood}
             disabled={!newFood.trim()}
-            className="w-full sm:w-auto flex items-center justify-center gap-2 bg-green-600 text-white px-4 py-2.5 sm:py-2 rounded-lg hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-base font-medium"
+            className="flex items-center gap-2 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
             <Plus className="w-4 h-4" />
             Add Food
@@ -159,26 +159,26 @@ const FavoriteFoodsSection = ({ foods, onChange }: Props) => {
                 {categoryLabels[category as MealCategory]} ({categoryFoods.length})
               </h3>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
               {categoryFoods.map((food) => (
                 <div
                   key={food.id}
                   className="bg-white border border-gray-200 rounded-lg p-3 hover:bg-gray-50 transition-colors"
                 >
                   {editingId === food.id ? (
-                    <div className="space-y-2 sm:space-y-3">
+                    <div className="space-y-2">
                       <input
                         type="text"
                         value={editingName}
                         onChange={(e) => setEditingName(e.target.value)}
                         onKeyPress={handleEditKeyPress}
-                        className="w-full text-sm sm:text-base border border-gray-300 rounded px-2 py-2 sm:py-1 focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                        className="w-full text-sm border border-gray-300 rounded px-2 py-1 focus:ring-2 focus:ring-green-500 focus:border-transparent"
                         autoFocus
                       />
                       <select
                         value={editingCategory}
                         onChange={(e) => setEditingCategory(e.target.value as MealCategory)}
-                        className="w-full text-sm sm:text-base border border-gray-300 rounded px-2 py-2 sm:py-1 focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                        className="w-full text-sm border border-gray-300 rounded px-2 py-1 focus:ring-2 focus:ring-green-500 focus:border-transparent"
                       >
                         {Object.entries(categoryLabels).map(([value, label]) => (
                           <option key={value} value={value}>
@@ -186,44 +186,44 @@ const FavoriteFoodsSection = ({ foods, onChange }: Props) => {
                           </option>
                         ))}
                       </select>
-                      <div className="flex gap-1 sm:gap-2">
+                      <div className="flex gap-1">
                         <button
                           type="button"
                           onClick={saveEdit}
-                          className="flex-1 flex items-center justify-center gap-1 text-green-600 hover:bg-green-50 py-2 sm:py-1 rounded transition-colors text-sm font-medium"
+                          className="flex-1 flex items-center justify-center gap-1 text-green-600 hover:bg-green-50 py-1 rounded transition-colors"
                         >
-                          <Check className="w-3 h-3 sm:w-4 sm:h-4" />
-                          <span className="hidden xs:inline">Save</span>
+                          <Check className="w-3 h-3" />
+                          Save
                         </button>
                         <button
                           type="button"
                           onClick={cancelEditing}
-                          className="flex-1 flex items-center justify-center gap-1 text-gray-600 hover:bg-gray-50 py-2 sm:py-1 rounded transition-colors text-sm font-medium"
+                          className="flex-1 flex items-center justify-center gap-1 text-gray-600 hover:bg-gray-50 py-1 rounded transition-colors"
                         >
-                          <Cancel className="w-3 h-3 sm:w-4 sm:h-4" />
-                          <span className="hidden xs:inline">Cancel</span>
+                          <Cancel className="w-3 h-3" />
+                          Cancel
                         </button>
                       </div>
                     </div>
                   ) : (
-                    <div className="flex items-start sm:items-center justify-between gap-2">
-                      <span className="text-sm sm:text-base text-gray-800 leading-tight flex-1 min-w-0 break-words">{food.name}</span>
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="text-sm text-gray-800 break-words flex-1 min-w-0">{food.name}</span>
                       <div className="flex items-center gap-1 flex-shrink-0">
                         <button
                           type="button"
                           onClick={() => startEditing(food)}
-                          className="text-gray-400 hover:text-blue-500 transition-colors p-1"
+                          className="p-1.5 text-gray-400 hover:text-blue-500 hover:bg-blue-50 rounded-lg transition-colors"
                           aria-label={`Edit ${food.name}`}
                         >
-                          <Edit2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                          <Edit2 className="w-4 h-4" />
                         </button>
                         <button
                           type="button"
                           onClick={() => removeFood(food.id)}
-                          className="text-gray-400 hover:text-red-500 transition-colors p-1"
+                          className="p-1.5 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors"
                           aria-label={`Remove ${food.name}`}
                         >
-                          <X className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                          <X className="w-4 h-4" />
                         </button>
                       </div>
                     </div>

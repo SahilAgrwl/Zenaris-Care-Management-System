@@ -130,11 +130,11 @@ const AllergiesSection = ({ allergies, onChange }: Props) => {
   );
 
   return (
-    <div className="space-y-4 sm:space-y-6">
-      <div className="flex items-center gap-2 flex-wrap">
-        <AlertTriangle className="w-4 h-4 sm:w-5 sm:h-5 text-red-600 flex-shrink-0" />
-        <h2 className="text-base sm:text-lg font-semibold text-zenaris-dark">Allergies & Intolerances</h2>
-        <span className="text-xs sm:text-sm text-red-600 bg-red-50 px-2 py-1 rounded-full">Critical</span>
+    <div className="space-y-6">
+      <div className="flex items-center gap-2">
+        <AlertTriangle className="w-5 h-5 text-red-600" />
+        <h2 className="text-lg font-semibold text-zenaris-dark">Allergies & Intolerances</h2>
+        <span className="text-sm text-red-600 bg-red-50 px-2 py-1 rounded-full">Critical</span>
       </div>
 
       {/* Warning */}
@@ -153,15 +153,15 @@ const AllergiesSection = ({ allergies, onChange }: Props) => {
 
       {/* Quick Select Common Allergies */}
       {availableCommonAllergies.length > 0 && (
-        <div className="space-y-2 sm:space-y-3">
-          <h3 className="font-medium text-gray-800 text-sm sm:text-base">Quick Add Common Allergies</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2">
+        <div className="space-y-3">
+          <h3 className="font-medium text-gray-800">Quick Add Common Allergies</h3>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
             {availableCommonAllergies.map((allergy) => (
               <button
                 key={allergy}
                 type="button"
                 onClick={() => addAllergy(allergy)}
-                className="text-left text-sm p-2.5 sm:p-3 border border-gray-300 rounded-lg hover:bg-red-50 hover:border-red-300 transition-colors leading-tight"
+                className="text-left text-sm p-3 border border-gray-300 rounded-lg hover:bg-red-50 hover:border-red-300 transition-colors"
               >
                 {allergy}
               </button>
@@ -269,14 +269,15 @@ const AllergiesSection = ({ allergies, onChange }: Props) => {
                       value={editingName}
                       onChange={(e) => setEditingName(e.target.value)}
                       onKeyPress={handleEditKeyPress}
-                      className="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                      className="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm"
                       autoFocus
+                      placeholder="Enter allergy/intolerance name"
                     />
-                    <div className="grid grid-cols-2 gap-3">
+                    <div className="grid grid-cols-1 xs:grid-cols-2 gap-3">
                       <select
                         value={editingType}
                         onChange={(e) => setEditingType(e.target.value as 'allergy' | 'intolerance')}
-                        className="border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                        className="border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm"
                       >
                         <option value="allergy">Allergy</option>
                         <option value="intolerance">Intolerance</option>
@@ -284,7 +285,7 @@ const AllergiesSection = ({ allergies, onChange }: Props) => {
                       <select
                         value={editingSeverity}
                         onChange={(e) => setEditingSeverity(e.target.value as SeverityLevel)}
-                        className="border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                        className="border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm"
                       >
                         {Object.entries(severityLevels).map(([value, config]) => (
                           <option key={value} value={value}>
@@ -293,78 +294,86 @@ const AllergiesSection = ({ allergies, onChange }: Props) => {
                         ))}
                       </select>
                     </div>
-                    <div className="flex gap-2">
+                    <div className="flex flex-col xs:flex-row gap-2">
                       <button
                         type="button"
                         onClick={saveEdit}
-                        className="flex-1 flex items-center justify-center gap-1 bg-red-600 text-white py-2 rounded hover:bg-red-700 transition-colors"
+                        className="flex-1 flex items-center justify-center gap-2 bg-red-600 text-white py-2.5 px-4 rounded-lg hover:bg-red-700 transition-colors text-sm font-medium"
                       >
                         <Check className="w-4 h-4" />
-                        Save
+                        <span>Save Changes</span>
                       </button>
                       <button
                         type="button"
                         onClick={cancelEditing}
-                        className="flex-1 flex items-center justify-center gap-1 bg-gray-500 text-white py-2 rounded hover:bg-gray-600 transition-colors"
+                        className="flex-1 flex items-center justify-center gap-2 bg-gray-500 text-white py-2.5 px-4 rounded-lg hover:bg-gray-600 transition-colors text-sm font-medium"
                       >
                         <Cancel className="w-4 h-4" />
-                        Cancel
+                        <span>Cancel</span>
                       </button>
                     </div>
                   </div>
                 ) : (
-                  <div className="flex items-center justify-between">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-3 mb-2">
-                        <span className="font-semibold text-gray-800">{allergy.name}</span>
+                  <div className="space-y-3">
+                    {/* Mobile and Desktop Layout */}
+                    <div className="flex flex-col gap-3">
+                      {/* Header with name and badges */}
+                      <div className="flex flex-wrap items-center gap-2">
+                        <span className="font-semibold text-gray-800 break-words">{allergy.name}</span>
                         {allergy.isCommon && (
-                          <span className="text-xs px-2 py-1 bg-blue-100 text-blue-600 rounded-full">
+                          <span className="text-xs px-2 py-1 bg-blue-100 text-blue-600 rounded-full whitespace-nowrap">
                             Common
                           </span>
                         )}
-                        <span className={`text-xs px-2 py-1 rounded-full ${severityConfig.bg} ${severityConfig.color}`}>
+                        <span className={`text-xs px-2 py-1 rounded-full whitespace-nowrap ${severityConfig.bg} ${severityConfig.color}`}>
                           {severityConfig.label}
                         </span>
                       </div>
-                      <div className="flex items-center gap-4 text-sm text-gray-600">
-                        <select
-                          value={allergy.type}
-                          onChange={(e) => updateType(allergy.id, e.target.value as 'allergy' | 'intolerance')}
-                          className="border border-gray-300 rounded px-2 py-1 focus:ring-2 focus:ring-red-500 focus:border-transparent"
-                        >
-                          <option value="allergy">Allergy</option>
-                          <option value="intolerance">Intolerance</option>
-                        </select>
-                        <select
-                          value={allergy.severity}
-                          onChange={(e) => updateSeverity(allergy.id, e.target.value as SeverityLevel)}
-                          className="border border-gray-300 rounded px-2 py-1 focus:ring-2 focus:ring-red-500 focus:border-transparent"
-                        >
-                          {Object.entries(severityLevels).map(([value, config]) => (
-                            <option key={value} value={value}>
-                              {config.label}
-                            </option>
-                          ))}
-                        </select>
+                      
+                      {/* Controls row - mobile responsive */}
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                        <div className="flex flex-col xs:flex-row gap-2">
+                          <select
+                            value={allergy.type}
+                            onChange={(e) => updateType(allergy.id, e.target.value as 'allergy' | 'intolerance')}
+                            className="text-sm border border-gray-300 rounded px-2 py-1 focus:ring-2 focus:ring-red-500 focus:border-transparent flex-shrink-0"
+                          >
+                            <option value="allergy">Allergy</option>
+                            <option value="intolerance">Intolerance</option>
+                          </select>
+                          <select
+                            value={allergy.severity}
+                            onChange={(e) => updateSeverity(allergy.id, e.target.value as SeverityLevel)}
+                            className="text-sm border border-gray-300 rounded px-2 py-1 focus:ring-2 focus:ring-red-500 focus:border-transparent flex-shrink-0"
+                          >
+                            {Object.entries(severityLevels).map(([value, config]) => (
+                              <option key={value} value={value}>
+                                {config.label}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
+                        
+                        {/* Action buttons */}
+                        <div className="flex items-center justify-end gap-1">
+                          <button
+                            type="button"
+                            onClick={() => startEditing(allergy)}
+                            className="p-2 text-gray-400 hover:text-blue-500 hover:bg-blue-50 rounded-lg transition-colors flex-shrink-0"
+                            aria-label={`Edit ${allergy.name}`}
+                          >
+                            <Edit2 className="w-4 h-4" />
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => removeAllergy(allergy.id)}
+                            className="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors flex-shrink-0"
+                            aria-label={`Remove ${allergy.name}`}
+                          >
+                            <X className="w-5 h-5" />
+                          </button>
+                        </div>
                       </div>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <button
-                        type="button"
-                        onClick={() => startEditing(allergy)}
-                        className="text-gray-400 hover:text-blue-500 transition-colors"
-                        aria-label={`Edit ${allergy.name}`}
-                      >
-                        <Edit2 className="w-4 h-4" />
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => removeAllergy(allergy.id)}
-                        className="text-gray-400 hover:text-red-500 transition-colors"
-                        aria-label={`Remove ${allergy.name}`}
-                      >
-                        <X className="w-5 h-5" />
-                      </button>
                     </div>
                   </div>
                 )}

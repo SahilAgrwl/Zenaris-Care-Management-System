@@ -83,17 +83,17 @@ const DislikedFoodsSection = ({ foods, onChange }: Props) => {
   };
 
   return (
-    <div className="space-y-4 sm:space-y-6">
+    <div className="space-y-6">
       <div className="flex items-center gap-2">
-        <ThumbsDown className="w-4 h-4 sm:w-5 sm:h-5 text-orange-600 flex-shrink-0" />
-        <h2 className="text-base sm:text-lg font-semibold text-zenaris-dark">Disliked Foods</h2>
+        <ThumbsDown className="w-5 h-5 text-orange-600" />
+        <h2 className="text-lg font-semibold text-zenaris-dark">Disliked Foods</h2>
       </div>
 
       {/* Add New Food */}
-      <div className="bg-orange-50 border border-orange-200 rounded-lg sm:rounded-xl p-3 sm:p-4">
-        <div className="space-y-3 sm:space-y-4">
-          <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 gap-3 sm:gap-4">
-            <div className="lg:col-span-2">
+      <div className="bg-orange-50 border border-orange-200 rounded-xl p-4">
+        <div className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="md:col-span-2">
               <label htmlFor="newDislikedFood" className="block text-sm font-medium text-gray-700 mb-2">
                 Add Disliked Food
               </label>
@@ -103,7 +103,7 @@ const DislikedFoodsSection = ({ foods, onChange }: Props) => {
                 value={newFood}
                 onChange={(e) => setNewFood(e.target.value)}
                 onKeyPress={handleKeyPress}
-                className="w-full px-3 py-2.5 sm:py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent text-base"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                 placeholder="e.g., Brussels sprouts, Spicy food..."
               />
             </div>
@@ -115,7 +115,7 @@ const DislikedFoodsSection = ({ foods, onChange }: Props) => {
                 id="severity"
                 value={selectedSeverity}
                 onChange={(e) => setSelectedSeverity(e.target.value as DislikedFood['severity'])}
-                className="w-full px-3 py-2.5 sm:py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent text-base"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
               >
                 {Object.entries(severityLevels).map(([value, config]) => (
                   <option key={value} value={value}>
@@ -129,7 +129,7 @@ const DislikedFoodsSection = ({ foods, onChange }: Props) => {
             type="button"
             onClick={addFood}
             disabled={!newFood.trim()}
-            className="w-full sm:w-auto flex items-center justify-center gap-2 bg-orange-600 text-white px-4 py-2.5 sm:py-2 rounded-lg hover:bg-orange-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-base font-medium"
+            className="flex items-center gap-2 bg-orange-600 text-white px-4 py-2 rounded-lg hover:bg-orange-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
             <Plus className="w-4 h-4" />
             Add Disliked Food
@@ -138,22 +138,22 @@ const DislikedFoodsSection = ({ foods, onChange }: Props) => {
       </div>
 
       {/* Severity Level Guide */}
-      <div className="bg-gray-50 border border-gray-200 rounded-lg sm:rounded-xl p-3 sm:p-4">
-        <h3 className="font-medium text-gray-800 mb-2 sm:mb-3 flex items-center gap-2">
-          <AlertCircle className="w-4 h-4 flex-shrink-0" />
+      <div className="bg-gray-50 border border-gray-200 rounded-xl p-4">
+        <h3 className="font-medium text-gray-800 mb-3 flex items-center gap-2">
+          <AlertCircle className="w-4 h-4" />
           Severity Levels
         </h3>
-        <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 gap-2 sm:gap-3 text-sm">
-          <div className="flex items-start gap-2">
-            <div className="w-3 h-3 bg-yellow-400 rounded-full mt-0.5 flex-shrink-0"></div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
             <span><strong>Mild Dislike:</strong> Prefers to avoid but will eat if necessary</span>
           </div>
-          <div className="flex items-start gap-2">
-            <div className="w-3 h-3 bg-orange-400 rounded-full mt-0.5 flex-shrink-0"></div>
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 bg-orange-400 rounded-full"></div>
             <span><strong>Strong Dislike:</strong> Very resistant, likely to refuse</span>
           </div>
-          <div className="flex items-start gap-2">
-            <div className="w-3 h-3 bg-red-400 rounded-full mt-0.5 flex-shrink-0"></div>
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 bg-red-400 rounded-full"></div>
             <span><strong>Won't Eat:</strong> Will absolutely refuse, may cause distress</span>
           </div>
         </div>
@@ -176,13 +176,14 @@ const DislikedFoodsSection = ({ foods, onChange }: Props) => {
                       value={editingName}
                       onChange={(e) => setEditingName(e.target.value)}
                       onKeyPress={handleEditKeyPress}
-                      className="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                      className="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-orange-500 focus:border-transparent text-sm"
                       autoFocus
+                      placeholder="Enter food name"
                     />
                     <select
                       value={editingSeverity}
                       onChange={(e) => setEditingSeverity(e.target.value as DislikedFood['severity'])}
-                      className="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                      className="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-orange-500 focus:border-transparent text-sm"
                     >
                       {Object.entries(severityLevels).map(([value, config]) => (
                         <option key={value} value={value}>
@@ -190,63 +191,71 @@ const DislikedFoodsSection = ({ foods, onChange }: Props) => {
                         </option>
                       ))}
                     </select>
-                    <div className="flex gap-2">
+                    <div className="flex flex-col xs:flex-row gap-2">
                       <button
                         type="button"
                         onClick={saveEdit}
-                        className="flex-1 flex items-center justify-center gap-1 bg-orange-600 text-white py-2 rounded hover:bg-orange-700 transition-colors"
+                        className="flex-1 flex items-center justify-center gap-2 bg-orange-600 text-white py-2.5 px-4 rounded-lg hover:bg-orange-700 transition-colors text-sm font-medium"
                       >
                         <Check className="w-4 h-4" />
-                        Save
+                        <span>Save Changes</span>
                       </button>
                       <button
                         type="button"
                         onClick={cancelEditing}
-                        className="flex-1 flex items-center justify-center gap-1 bg-gray-500 text-white py-2 rounded hover:bg-gray-600 transition-colors"
+                        className="flex-1 flex items-center justify-center gap-2 bg-gray-500 text-white py-2.5 px-4 rounded-lg hover:bg-gray-600 transition-colors text-sm font-medium"
                       >
                         <Cancel className="w-4 h-4" />
-                        Cancel
+                        <span>Cancel</span>
                       </button>
                     </div>
                   </div>
                 ) : (
-                  <div className="flex items-center justify-between">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-3">
-                        <span className="font-medium text-gray-800">{food.name}</span>
-                        <span className={`text-xs px-2 py-1 rounded-full ${severityConfig.bg} ${severityConfig.color}`}>
-                          {severityConfig.label}
-                        </span>
+                  <div className="space-y-3">
+                    {/* Mobile and Desktop Layout */}
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                      <div className="flex-1 min-w-0">
+                        <div className="flex flex-wrap items-center gap-2">
+                          <span className="font-medium text-gray-800 break-words">{food.name}</span>
+                          <span className={`text-xs px-2 py-1 rounded-full whitespace-nowrap ${severityConfig.bg} ${severityConfig.color}`}>
+                            {severityConfig.label}
+                          </span>
+                        </div>
                       </div>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <select
-                        value={food.severity}
-                        onChange={(e) => updateSeverity(food.id, e.target.value as DislikedFood['severity'])}
-                        className="text-sm border border-gray-300 rounded px-2 py-1 focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-                      >
-                        {Object.entries(severityLevels).map(([value, config]) => (
-                          <option key={value} value={value}>
-                            {config.label}
-                          </option>
-                        ))}
-                      </select>
-                      <button
-                        type="button"
-                        onClick={() => startEditing(food)}
-                        className="text-gray-400 hover:text-blue-500 transition-colors"
-                        aria-label={`Edit ${food.name}`}
-                      >
-                        <Edit2 className="w-4 h-4" />
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => removeFood(food.id)}
-                        className="text-gray-400 hover:text-red-500 transition-colors"
-                        aria-label={`Remove ${food.name}`}
-                      >
-                        <X className="w-4 h-4" />
-                      </button>
+                      
+                      {/* Action buttons - mobile responsive */}
+                      <div className="flex items-center justify-between sm:justify-end gap-2">
+                        <select
+                          value={food.severity}
+                          onChange={(e) => updateSeverity(food.id, e.target.value as DislikedFood['severity'])}
+                          className="text-sm border border-gray-300 rounded px-2 py-1 focus:ring-2 focus:ring-orange-500 focus:border-transparent flex-shrink-0"
+                        >
+                          {Object.entries(severityLevels).map(([value, config]) => (
+                            <option key={value} value={value}>
+                              {config.label}
+                            </option>
+                          ))}
+                        </select>
+                        
+                        <div className="flex items-center gap-1">
+                          <button
+                            type="button"
+                            onClick={() => startEditing(food)}
+                            className="p-2 text-gray-400 hover:text-blue-500 hover:bg-blue-50 rounded-lg transition-colors flex-shrink-0"
+                            aria-label={`Edit ${food.name}`}
+                          >
+                            <Edit2 className="w-4 h-4" />
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => removeFood(food.id)}
+                            className="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors flex-shrink-0"
+                            aria-label={`Remove ${food.name}`}
+                          >
+                            <X className="w-4 h-4" />
+                          </button>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 )}
