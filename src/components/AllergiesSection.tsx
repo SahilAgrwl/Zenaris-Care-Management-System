@@ -130,11 +130,11 @@ const AllergiesSection = ({ allergies, onChange }: Props) => {
   );
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center gap-2">
-        <AlertTriangle className="w-5 h-5 text-red-600" />
-        <h2 className="text-lg font-semibold text-zenaris-dark">Allergies & Intolerances</h2>
-        <span className="text-sm text-red-600 bg-red-50 px-2 py-1 rounded-full">Critical</span>
+    <div className="space-y-4 sm:space-y-6">
+      <div className="flex items-center gap-2 flex-wrap">
+        <AlertTriangle className="w-4 h-4 sm:w-5 sm:h-5 text-red-600 flex-shrink-0" />
+        <h2 className="text-base sm:text-lg font-semibold text-zenaris-dark">Allergies & Intolerances</h2>
+        <span className="text-xs sm:text-sm text-red-600 bg-red-50 px-2 py-1 rounded-full">Critical</span>
       </div>
 
       {/* Warning */}
@@ -153,15 +153,15 @@ const AllergiesSection = ({ allergies, onChange }: Props) => {
 
       {/* Quick Select Common Allergies */}
       {availableCommonAllergies.length > 0 && (
-        <div className="space-y-3">
-          <h3 className="font-medium text-gray-800">Quick Add Common Allergies</h3>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
+        <div className="space-y-2 sm:space-y-3">
+          <h3 className="font-medium text-gray-800 text-sm sm:text-base">Quick Add Common Allergies</h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2">
             {availableCommonAllergies.map((allergy) => (
               <button
                 key={allergy}
                 type="button"
                 onClick={() => addAllergy(allergy)}
-                className="text-left text-sm p-3 border border-gray-300 rounded-lg hover:bg-red-50 hover:border-red-300 transition-colors"
+                className="text-left text-sm p-2.5 sm:p-3 border border-gray-300 rounded-lg hover:bg-red-50 hover:border-red-300 transition-colors leading-tight"
               >
                 {allergy}
               </button>

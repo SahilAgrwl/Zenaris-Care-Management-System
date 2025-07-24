@@ -40,12 +40,12 @@ const MealPreferencesForm = ({ initialData, onSubmit, onChange }: Props) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="p-6 space-y-8">
+    <form onSubmit={handleSubmit} className="p-4 sm:p-6 space-y-6 sm:space-y-8">
       {/* Patient Information */}
-      <div className="space-y-4">
+      <div className="space-y-3 sm:space-y-4">
         <div className="flex items-center gap-2">
-          <User className="w-5 h-5 text-zenaris-blue" />
-          <h2 className="text-lg font-semibold text-zenaris-dark">Patient Information</h2>
+          <User className="w-4 h-4 sm:w-5 sm:h-5 text-zenaris-blue flex-shrink-0" />
+          <h2 className="text-base sm:text-lg font-semibold text-zenaris-dark">Patient Information</h2>
         </div>
         <div>
           <label htmlFor="patientName" className="block text-sm font-medium text-gray-700 mb-2">
@@ -56,7 +56,7 @@ const MealPreferencesForm = ({ initialData, onSubmit, onChange }: Props) => {
             id="patientName"
             value={formData.patientName}
             onChange={(e) => updateFormData({ patientName: e.target.value })}
-            className="w-full px-3 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-zenaris-blue focus:border-transparent transition-colors"
+            className="w-full px-3 py-3 border border-gray-300 rounded-lg sm:rounded-xl focus:ring-2 focus:ring-zenaris-blue focus:border-transparent transition-colors text-base"
             placeholder="Enter patient's full name"
             required
           />
@@ -64,12 +64,12 @@ const MealPreferencesForm = ({ initialData, onSubmit, onChange }: Props) => {
       </div>
 
       {/* Warning Notice */}
-      <div className="bg-amber-50 border border-amber-200 rounded-xl p-4">
-        <div className="flex items-start gap-3">
-          <AlertTriangle className="w-5 h-5 text-amber-600 mt-0.5 flex-shrink-0" />
+      <div className="bg-amber-50 border border-amber-200 rounded-lg sm:rounded-xl p-3 sm:p-4">
+        <div className="flex items-start gap-2 sm:gap-3">
+          <AlertTriangle className="w-4 h-4 sm:w-5 sm:h-5 text-amber-600 mt-0.5 flex-shrink-0" />
           <div>
             <h3 className="text-sm font-semibold text-amber-800 mb-1">Important Notice</h3>
-            <p className="text-sm text-amber-700">
+            <p className="text-sm text-amber-700 leading-relaxed">
               Please ensure all allergies and intolerances are accurately recorded. This information is critical for patient safety.
             </p>
           </div>
@@ -98,13 +98,13 @@ const MealPreferencesForm = ({ initialData, onSubmit, onChange }: Props) => {
       />
 
       {/* Submit Button */}
-      <div className="pt-6 border-t border-gray-100">
+      <div className="pt-4 sm:pt-6 border-t border-gray-100">
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full flex items-center justify-center gap-2 bg-zenaris-blue text-white py-4 px-6 rounded-xl font-semibold hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          className="w-full flex items-center justify-center gap-2 bg-zenaris-blue text-white py-3 sm:py-4 px-4 sm:px-6 rounded-lg sm:rounded-xl font-semibold hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-base"
         >
-          <Save className="w-5 h-5" />
+          <Save className="w-4 h-4 sm:w-5 sm:h-5" />
           {isSubmitting ? 'Saving...' : 'Save Meal Preferences'}
         </button>
       </div>
